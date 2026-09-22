@@ -168,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const aboutBtn = document.getElementById('aboutBtn');
   const aboutModal = document.getElementById('aboutModal');
   const closeAboutBtn = document.getElementById('closeAboutBtn');
+  const navSignInBtn = document.getElementById('navSignInBtn');
 
   // State
   const selectedTraits = new Set();
@@ -222,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function switchView(fromView, toView) {
     if (fromView) fromView.classList.add('hidden');
     if (toView) toView.classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
   if (switchToSignUp) switchToSignUp.addEventListener('click', () => switchView(signInView, signUpView));
@@ -233,6 +234,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (backToReadyFromSignUp) backToReadyFromSignUp.addEventListener('click', () => { stopWebcam(); switchView(signUpView, readyView); });
   if (goToSignInBtn) goToSignInBtn.addEventListener('click', () => switchView(readyView, signInView));
   if (goToSignUpBtn) goToSignUpBtn.addEventListener('click', () => switchView(readyView, signUpView));
+  if (navSignInBtn) navSignInBtn.addEventListener('click', () => {
+    switchView(heroView, readyView);
+    goToSignInBtn?.click();
+  });
 
   statusOptionsGrid.forEach(card => {
     card.addEventListener('click', () => {
@@ -989,7 +994,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (aboutBtn && aboutModal && closeAboutBtn) {
-    aboutBtn.addEventListener('click', () => aboutModal.classList.add('active'));
+    const openAboutModal = () => aboutModal.classList.add('active');
+    aboutBtn.addEventListener('click', openAboutModal);
+    document.getElementById('footerAboutBtn')?.addEventListener('click', openAboutModal);
+    document.getElementById('footerHomeBtn')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'auto' }));
+    document.getElementById('footerFeaturesBtn')?.addEventListener('click', () => getStartedBtn?.click());
+    document.getElementById('footerGetStartedBtn')?.addEventListener('click', () => getStartedBtn?.click());
     closeAboutBtn.addEventListener('click', () => aboutModal.classList.remove('active'));
     aboutModal.addEventListener('click', (e) => { if (e.target === aboutModal) aboutModal.classList.remove('active'); });
   }
