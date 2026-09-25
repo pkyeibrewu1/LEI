@@ -1,6 +1,6 @@
 # 🌸 Lèi — The Women's Sanctuary Ecosystem
 
-> *“Everything for HER. Connect. Discover. Grow.”*
+*“Everything for HER. Connect. Discover. Grow.”*
 
 **Lèi** (named after the Italian word for *"Her"*) is a private, secure, and gated digital sanctuary built exclusively for women (cisgender and transgender). It combines the best elements of social connection, mutual aid, student support, and safety infrastructure into a cohesive, trauma-informed web ecosystem.
 
@@ -18,7 +18,7 @@
 ### 2. 🏛️ Sanctuary Spatial Access Control
 * **First-Time Commitment:** Members choose their primary sanctuary space (**Cis Lèi Space** or **Trans Lèi Space**) strictly during initial signup. Returning members sign in directly to their designated space.
 * **Universal General Realm:** All members can freely toggle into and participate in the shared **All Welcome (General) Space**.
-* **Cross-Boundary Protection:** Direct switching between Cis and Trans spaces is locked to protect community comfort, requiring a formal **Affiliation Appeal** reviewed by the moderation council (with a respectful "View Mode" available).
+* **Cross-Boundary Protection:** Direct switching between Cis and Trans spaces is locked to protect community comfort, requiring a formal **Affiliation Appeal** reviewed by the moderation council.
 
 ### 3. 🎓 Campus SOS & Student Mutual Aid
 * **College Networks:** Members register with their university/college name (e.g., *Georgia State University*).
@@ -34,7 +34,7 @@
 * **Planning Arrests / Protest Safety:** A specialized safety module providing encrypted legal rights guides, National Lawyers Guild emergency hotlines, and automated jail-support check-in timers for reproductive rights marches and activism.
 
 ### 6. 🤖 Lèi AI Sister Concierge
-* A built-in, confidential AI assistant trained to offer trauma-informed wellness guidance, resume/career coaching, cycle insights, and instant campus emergency routing.
+* A built-in, confidential AI assistant trained to offer trauma-informed wellness guidance, resume/career coaching, cycle insights and many more.
 
 ### 7. 🤫 Fizz Vent Wall, Discord Hubs & Mutual Aid
 * **Anonymous Vent Wall:** 100% anonymous, unidentifiable confessions and support requests with empathy reaction counters.
@@ -51,29 +51,27 @@
 
 ---
 
+## Technologies Used
+1. Frontend: HTML, CSS,JavaScript
+2. Backend: Node.js
+
+## Requirements/Prerequisites
+1. A modern web browser
+2. A local Git installation
+3. Valid phone number for SMS verfication testing.  
+
 ## 🚀 Local Setup & Installation
 
 1. Clone or download the repository to your local machine:
    ```bash
-   git clone [https://github.com/YOUR-USERNAME/lei-sanctuary.git](https://github.com/YOUR-USERNAME/lei-sanctuary.git)
+   git clone [https://github.com/pkyeibrewu1/LEI.git](https://github.com/pkyeibrewu1/LEI.git)
+2. Open the project folder in your editor. 
 
-## SMS Verification Deployment
+## License 
+Thsi project is licensed under the MIT License. 
 
-The real SMS flow uses Twilio Verify through the Vercel functions in `api/`. GitHub Pages cannot run these server-side endpoints.
+## Contact Information
+Pamela Kyei Brewu - pkyeibrewu1
+Contributions are welcome. If you find any issue or believe something could be improved, feel free to open a pull request. 
 
-1. Import this repository into Vercel.
-2. Add these Vercel environment variables:
-   - `TWILIO_ACCOUNT_SID`
-   - `TWILIO_AUTH_TOKEN`
-   - `TWILIO_VERIFY_SERVICE_SID`
-   - `FRONTEND_ORIGIN` set to the Vercel app URL
-3. Deploy the project and use its Vercel URL for signup and SMS verification.
 
-Never place Twilio credentials in frontend files or GitHub Pages.
-
-For private developer testing only, add `ALLOW_DEVELOPER_BYPASS=true` and `DEVELOPER_BYPASS_CODE` in Vercel. Keep this disabled for public production use; the bypass code is intentionally never stored in the repository.
-
-## Hackathon Materials
-
-- Presentation: `presentation/lei-hackathon-pitch.pptx`
-- Speaker notes and demo order: `presentation/speaker-notes.md`
