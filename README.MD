@@ -58,20 +58,18 @@
 ## Requirements/Prerequisites
 1. A modern web browser
 2. A local Git installation
-3. Valid phone number for SMS verfication testing.  
+3. Valid phone number for SMS verfication testing.
 
 ## 🚀 Local Setup & Installation
 
 1. Clone or download the repository to your local machine:
    ```bash
    git clone [https://github.com/pkyeibrewu1/LEI.git](https://github.com/pkyeibrewu1/LEI.git)
-2. Open the project folder in your editor. 
+2. Open the project folder in your editor.
 
-## License 
-Thsi project is licensed under the MIT License. 
+## License
+Thsi project is licensed under the MIT License.
 
 ## Contact Information
 Pamela Kyei Brewu - pkyeibrewu1
-Contributions are welcome. If you find any issue or believe something could be improved, feel free to open a pull request. 
-
-
+Contributions are welcome. If you find any issue or believe something could be improved, feel free to open a pull request.
