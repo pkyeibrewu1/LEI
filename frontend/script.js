@@ -998,7 +998,6 @@ document.addEventListener('DOMContentLoaded', () => {
     aboutBtn.addEventListener('click', openAboutModal);
     document.getElementById('footerAboutBtn')?.addEventListener('click', openAboutModal);
     document.getElementById('footerHomeBtn')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'auto' }));
-    document.getElementById('footerFeaturesBtn')?.addEventListener('click', () => getStartedBtn?.click());
     document.getElementById('footerGetStartedBtn')?.addEventListener('click', () => getStartedBtn?.click());
     closeAboutBtn.addEventListener('click', () => aboutModal.classList.remove('active'));
     aboutModal.addEventListener('click', (e) => { if (e.target === aboutModal) aboutModal.classList.remove('active'); });
