@@ -159,6 +159,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const reportModal = document.getElementById('reportModal');
   const closeReportBtn = document.getElementById('closeReportBtn');
   const reportForm = document.getElementById('reportForm');
+  const memberReportStatus = document.getElementById('memberReportStatus');
+  const openProblemReportBtn = document.getElementById('openProblemReportBtn');
+  const problemReportModal = document.getElementById('problemReportModal');
+  const closeProblemReportBtn = document.getElementById('closeProblemReportBtn');
+  const problemReportForm = document.getElementById('problemReportForm');
+  const problemReportStatus = document.getElementById('problemReportStatus');
 
   const openAppealModalBtn = document.getElementById('openAppealModalBtn');
   const appealModal = document.getElementById('appealModal');
@@ -983,9 +989,84 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (openReportModalBtn && reportModal && closeReportBtn) {
-    openReportModalBtn.addEventListener('click', (e) => { e.stopPropagation(); userDropdownMenu.classList.add('hidden'); reportModal.classList.add('active'); });
+  if (openReportModalBtn && reportModal && closeReportBtn && reportForm) {
+    openReportModalBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      userDropdownMenu.classList.add('hidden');
+      reportForm.reset();
+      if (memberReportStatus) memberReportStatus.textContent = '';
+      reportModal.classList.add('active');
+      document.getElementById('reportTargetUser')?.focus();
+    });
     closeReportBtn.addEventListener('click', () => reportModal.classList.remove('active'));
+    reportModal.addEventListener('click', (event) => {
+      if (event.target === reportModal) reportModal.classList.remove('active');
+    });
+    reportForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const submitButton = reportForm.querySelector('button[type="submit"]');
+      const report = {
+        reportType: 'member',
+        username: document.getElementById('reportTargetUser').value.trim(),
+        reason: document.getElementById('reportReason').value,
+        details: document.getElementById('reportDetails').value.trim(),
+        contact: document.getElementById('memberReportContact').value.trim(),
+        pageUrl: `${window.location.origin}${window.location.pathname}`
+      };
+      submitButton.disabled = true;
+      if (memberReportStatus) memberReportStatus.textContent = 'Sending report...';
+      fetch(`${window.LEI_API_BASE_URL || ''}/api/reports`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(report)
+      }).then(async (response) => {
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to send the report.');
+        reportForm.reset();
+        if (memberReportStatus) memberReportStatus.textContent = 'Your report was sent to the Lèi team.';
+      }).catch((error) => {
+        if (memberReportStatus) memberReportStatus.textContent = error.message || 'Unable to send the report. Please try again later.';
+      }).finally(() => { submitButton.disabled = false; });
+    });
+  }
+
+  if (openProblemReportBtn && problemReportModal && closeProblemReportBtn && problemReportForm) {
+    openProblemReportBtn.addEventListener('click', () => {
+      problemReportForm.reset();
+      if (problemReportStatus) problemReportStatus.textContent = '';
+      problemReportModal.classList.add('active');
+      document.getElementById('problemReportCategory')?.focus();
+    });
+    closeProblemReportBtn.addEventListener('click', () => problemReportModal.classList.remove('active'));
+    problemReportModal.addEventListener('click', (event) => {
+      if (event.target === problemReportModal) problemReportModal.classList.remove('active');
+    });
+    problemReportForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const submitButton = problemReportForm.querySelector('button[type="submit"]');
+      const report = {
+        reportType: 'problem',
+        category: document.getElementById('problemReportCategory').value,
+        reason: document.getElementById('problemReportCategory').value,
+        details: document.getElementById('problemReportDetails').value.trim(),
+        contact: document.getElementById('problemReportContact').value.trim(),
+        pageUrl: `${window.location.origin}${window.location.pathname}`
+      };
+      submitButton.disabled = true;
+      if (problemReportStatus) problemReportStatus.textContent = 'Sending report...';
+      fetch(`${window.LEI_API_BASE_URL || ''}/api/reports`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(report)
+      }).then(async (response) => {
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to send the report.');
+        problemReportForm.reset();
+        if (problemReportStatus) problemReportStatus.textContent = 'Your report was sent to the Lèi team.';
+      }).catch((error) => {
+        if (problemReportStatus) problemReportStatus.textContent = error.message || 'Unable to send the report. Please try again later.';
+      }).finally(() => { submitButton.disabled = false; });
+    });
   }
 
   if (logoutBtn) {

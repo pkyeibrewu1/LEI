@@ -786,7 +786,54 @@ svg circle[fill="#1b1218"], svg polygon[points*="1b1218"], svg [fill="#1b1218"] 
 .report-card { max-width: 460px; text-align: center !important; }
 .report-form { margin-top: 14px; display: flex; flex-direction: column; gap: 12px; text-align: left; }
 body.theme-ivory .report-form input, body.theme-ivory .report-form select, body.theme-ivory .report-form textarea { background: var(--ivory-surface) !important; border: 1px solid var(--ivory-border) !important; color: var(--ivory-text-main) !important; }
+.problem-report-note, .problem-report-status { color: var(--ivory-text-muted); font-size: 0.72rem; line-height: 1.5; }
+.problem-report-note { margin: 8px 0 0; }
+.problem-report-status { min-height: 1.1em; margin: 0; text-align: center; }
+.problem-report-note + .report-form .form-group label span { font-weight: 400; text-transform: none; letter-spacing: 0; }
 .evidence-input { font-size: 0.75rem; color: var(--ivory-text-muted); }
+
+.reports-page { min-height: 100vh; background: var(--ivory-bg); color: var(--ivory-text-main); font-family: 'Montserrat', sans-serif; }
+.reports-page .hidden { display: none !important; }
+.reports-shell { width: min(1060px, calc(100% - 40px)); margin: 0 auto; padding: 24px 0 56px; }
+.reports-header, .reports-title-row, .report-item-header, .report-item-footer, .reports-pagination { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.reports-header { padding-bottom: 24px; border-bottom: 1px solid var(--ivory-border); }
+.reports-brand { color: var(--ivory-text-main); font-size: 1rem; font-weight: 700; text-decoration: none; }
+.reports-brand span { color: var(--ivory-text-muted); font-size: 0.78rem; font-weight: 400; }
+.reports-login { width: min(440px, 100%); margin: 12vh auto 0; }
+.reports-login h1, .reports-title-row h1 { margin: 5px 0 10px; font-size: 1.7rem; line-height: 1.2; }
+.reports-login > p:not(.reports-eyebrow) { color: var(--ivory-text-muted); font-size: 0.86rem; line-height: 1.6; }
+.reports-eyebrow { color: var(--ivory-accent-warm); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; }
+#reportsLoginForm { display: grid; gap: 10px; margin-top: 24px; }
+#reportsLoginForm label { font-size: 0.78rem; font-weight: 600; }
+#reportsLoginForm input, .report-status-control select { min-height: 42px; padding: 9px 11px; border: 1px solid var(--ivory-border); border-radius: 6px; background: #fff; color: var(--ivory-text-main); font: inherit; }
+.reports-primary-btn, .reports-secondary-btn { min-height: 38px; padding: 8px 14px; border: 1px solid var(--ivory-border); border-radius: 6px; font: inherit; font-size: 0.76rem; font-weight: 600; cursor: pointer; }
+.reports-primary-btn { margin-top: 4px; border-color: var(--ivory-text-main); background: var(--ivory-text-main); color: #fff; }
+.reports-secondary-btn { background: #fff; color: var(--ivory-text-main); }
+.reports-secondary-btn:disabled { cursor: not-allowed; opacity: 0.45; }
+.reports-status { min-height: 1.4em; margin: 8px 0; color: var(--ivory-text-muted); font-size: 0.76rem; }
+.reports-inbox { padding-top: 34px; }
+.reports-list { display: grid; gap: 12px; }
+.report-item { padding: 18px; border: 1px solid var(--ivory-border); border-radius: 6px; background: #fff; }
+.report-item-header { align-items: flex-start; }
+.report-item-title { overflow-wrap: anywhere; font-size: 0.95rem; font-weight: 600; }
+.report-item-time, .report-item-contact { flex: none; color: var(--ivory-text-muted); font-size: 0.7rem; }
+.report-item-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0; }
+.report-reason, .report-status-tag { padding: 5px 8px; border-radius: 4px; background: var(--ivory-chip-bg); font-size: 0.7rem; font-weight: 600; }
+.report-status-tag { background: #e5efe7; color: #315d3a; text-transform: capitalize; }
+.report-item-details { white-space: pre-wrap; overflow-wrap: anywhere; color: var(--ivory-text-main); font-size: 0.83rem; line-height: 1.6; }
+.report-item-footer { flex-wrap: wrap; justify-content: flex-start; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--ivory-border-light); }
+.report-item-footer a { color: #76513b; font-size: 0.72rem; }
+.report-status-control { display: inline-flex; align-items: center; gap: 7px; margin-left: auto; color: var(--ivory-text-muted); font-size: 0.7rem; }
+.report-status-control select { min-height: 34px; padding: 5px 8px; font-size: 0.72rem; }
+.reports-pagination { justify-content: center; margin-top: 20px; }
+.reports-pagination span { min-width: 64px; color: var(--ivory-text-muted); font-size: 0.75rem; text-align: center; }
+@media (max-width: 620px) {
+  .reports-shell { width: min(100% - 28px, 1060px); padding-top: 16px; }
+  .reports-login { margin-top: 9vh; }
+  .report-item { padding: 14px; }
+  .report-item-header { display: grid; gap: 6px; }
+  .report-status-control { margin-left: 0; }
+}
 
 .age-picker-row { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
 .btn-age-select { background: var(--ivory-surface); border: 1px solid var(--ivory-border); color: var(--ivory-text-main); padding: 10px; border-radius: 12px; font-size: 0.75rem; cursor: pointer; }
@@ -966,10 +1013,14 @@ body.theme-ivory .report-form input, body.theme-ivory .report-form select, body.
 .hub-event-gate { width: 100%; margin-top: 8px; padding: 11px; border-radius: 4px; background: #19171c; text-align: center; }
 .hub-event-gate span { display: block; margin-bottom: 8px; color: #f5f0f7; font-size: 0.59rem; font-weight: 600; }
 .hub-event-gate a { font-size: 0.58rem; }
-.hub-bottom-cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 55px 0; padding: 30px; border-radius: 6px; background: var(--hub-plum); color: #fff; }
+.hub-bottom-cta { display: flex; width: min(100% - 64px, 920px); align-items: center; justify-content: flex-start; gap: clamp(24px, 4vw, 48px); margin: 55px auto; padding: 30px; border-radius: 6px; background: var(--hub-plum); color: #fff; }
 .hub-bottom-cta h2 { margin-bottom: 7px; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2rem; font-weight: 600; }
 .hub-bottom-cta p { color: #e4dce6; font-size: 0.72rem; line-height: 1.6; }
-.hub-bottom-cta .hub-button { flex: 0 0 auto; border-color: #f0bc81; background: #f0bc81; color: #30253b; }
+.hub-bottom-cta .hub-button { min-height: 50px; flex: 0 0 auto; gap: 12px; padding: 0 22px; border-color: #f4d9d8; border-radius: 999px; background: #f4d9d8; color: #38283d; box-shadow: 0 7px 20px rgba(20, 12, 24, 0.18); font-size: 0.73rem; transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease; }
+.hub-bottom-cta .hub-button:hover { transform: translateY(-2px); border-color: #fff1ec; background: #fff1ec; box-shadow: 0 10px 24px rgba(20, 12, 24, 0.24); }
+.hub-bottom-cta .hub-button:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+.hub-bottom-cta .hub-button span { transition: transform 0.2s ease; }
+.hub-bottom-cta .hub-button:hover span { transform: translateX(3px); }
 .hub-footer { display: flex; justify-content: space-between; gap: 20px; padding: 20px 0 30px; border-top: 1px solid rgba(85, 59, 92, 0.13); color: #756d78; font-size: 0.6rem; }
 .hub-footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
 .hub-footer a { color: inherit; text-decoration: none; }
@@ -1034,5 +1085,5 @@ body.theme-ivory .report-form input, body.theme-ivory .report-form select, body.
 }
 @media (prefers-reduced-motion: reduce) {
   .hub-hero-copy, .hub-screen-wrap { animation: none; }
-  .hub-button { transition: none; }
+  .hub-button, .hub-bottom-cta .hub-button span { transition: none; }
 }

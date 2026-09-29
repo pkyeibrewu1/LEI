@@ -67,6 +67,20 @@
    git clone [https://github.com/pkyeibrewu1/LEI.git](https://github.com/pkyeibrewu1/LEI.git)
 2. Open the project folder in your editor.
 
+## Report Intake & Team Inbox
+
+Reports are submitted to `POST /api/reports` and stored in Supabase. The team can review them at `/reports.html`; this page requires the shared inbox token and supports status updates (`new`, `reviewing`, and `resolved`). The inbox uses manual refresh and does not send email notifications.
+
+To enable report intake in a Vercel deployment:
+
+1. Create a Supabase project and run [`supabase/reports.sql`](supabase/reports.sql) in its SQL Editor.
+2. In Vercel Project Settings → Environment Variables, add `SUPABASE_URL` using the project URL and `SUPABASE_SERVICE_ROLE_KEY` using the service-role key. Keep the service-role key server-side; never put it in frontend code or a `VITE_` variable.
+3. Create a long, random `LEI_REPORTS_ADMIN_TOKEN` and add it as a Vercel environment variable. Share it with authorized team members through a secure channel. It is not an individual account system, so rotate it if access changes.
+4. Optionally set `FRONTEND_ORIGIN` to the exact deployed site origin, then redeploy after configuring the variables.
+5. Open `https://<your-deployment>/reports.html` and enter `LEI_REPORTS_ADMIN_TOKEN` to review reports.
+
+Until Supabase and the Vercel environment variables are configured, report submissions return an error and are not stored in the browser as a fallback.
+
 ## License
 Thsi project is licensed under the MIT License.
 

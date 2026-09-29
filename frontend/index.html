@@ -166,7 +166,7 @@
           <h2>Support</h2>
           <span class="footer-link footer-planned">Help Center</span>
           <span class="footer-link footer-planned">Contact Us</span>
-          <span class="footer-link footer-planned">Report a Problem</span>
+          <button class="footer-link footer-action" id="openProblemReportBtn" type="button">Report a Problem</button>
         </div>
         <div class="footer-column">
           <h2>Safety &amp; Privacy</h2>
@@ -531,7 +531,7 @@
             <div class="dropdown-divider"></div>
             <button class="user-dropdown-item" id="openInviteModalBtn">💌 Invite Friends</button>
             <button class="user-dropdown-item" id="openSettingsModalBtn">⚙️ Account &amp; Status Settings</button>
-            <button class="user-dropdown-item item-report" id="openReportModalBtn">⚠️ Report Impersonator</button>
+            <button class="user-dropdown-item item-report" id="openReportModalBtn">⚠️ Report a Member</button>
             <div class="dropdown-divider"></div>
             <button class="user-dropdown-item item-logout" id="logoutBtn">Log Out</button>
           </div>
@@ -976,14 +976,69 @@
   </div>
 
   <div class="modal-backdrop" id="reportModal">
-    <div class="about-card report-card">
-      <button class="close-modal-btn" id="closeReportBtn">&times;</button>
+    <div class="about-card report-card" role="dialog" aria-modal="true" aria-labelledby="memberReportTitle">
+      <button class="close-modal-btn" id="closeReportBtn" type="button" aria-label="Close member report">&times;</button>
       <div class="about-icon">🛡️</div>
-      <h2 class="about-title">Report Violation</h2>
+      <h2 class="about-title" id="memberReportTitle">Report a Member</h2>
+      <p class="problem-report-note">Choose the closest reason and share what you observed. Reports are sent privately to the Lèi team for review. A concern is not proof; do not confront or publicly identify anyone.</p>
       <form id="reportForm" class="report-form">
-        <div class="form-group"><label>Target Username</label><input type="text" id="reportTargetUser" placeholder="@suspecthandle" required></div>
-        <div class="form-group"><label>Details</label><textarea id="reportDetails" rows="3" placeholder="Reason..." required></textarea></div>
-        <button type="submit" class="btn-auth-primary">Submit Report</button>
+        <div class="form-group">
+          <label for="reportTargetUser">Member username</label>
+          <input type="text" id="reportTargetUser" name="username" placeholder="@username" required>
+        </div>
+        <div class="form-group">
+          <label for="reportReason">Reason for report</label>
+          <select id="reportReason" name="reason" required>
+            <option value="" disabled selected>Select a reason</option>
+            <option value="false-account">Suspected false or misleading account</option>
+            <option value="bullying">Bullying, harassment, or intimidation</option>
+            <option value="eligibility">Concern about eligibility for this space</option>
+            <option value="wrong-space">Member may be in the wrong space</option>
+            <option value="other">Other safety concern</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="reportDetails">What did you observe?</label>
+          <textarea id="reportDetails" name="details" rows="4" maxlength="2000" placeholder="Include relevant context, such as where and when it happened. Focus on observable behavior, not assumptions about someone's identity." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="memberReportContact">Your email for follow-up</label>
+          <input type="email" id="memberReportContact" name="contact" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <button type="submit" class="btn-auth-primary">Save Report</button>
+        <p class="problem-report-status" id="memberReportStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="problemReportModal">
+    <div class="about-card report-card" role="dialog" aria-modal="true" aria-labelledby="problemReportTitle">
+      <button class="close-modal-btn" id="closeProblemReportBtn" type="button" aria-label="Close report form">&times;</button>
+      <div class="about-icon">✉</div>
+      <h2 class="about-title" id="problemReportTitle">Report a Problem</h2>
+      <p class="problem-report-note">Tell us what went wrong. Your report is sent privately to the Lèi team for review.</p>
+      <form id="problemReportForm" class="report-form">
+        <div class="form-group">
+          <label for="problemReportCategory">What is the problem?</label>
+          <select id="problemReportCategory" name="category" required>
+            <option value="" disabled selected>Select a category</option>
+            <option value="bug">Something is broken</option>
+            <option value="account">Account or sign-in</option>
+            <option value="accessibility">Accessibility</option>
+            <option value="content">Content or community concern</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="problemReportDetails">What happened?</label>
+          <textarea id="problemReportDetails" name="details" rows="4" maxlength="2000" placeholder="Share what you were trying to do and what went wrong." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="problemReportContact">Your email for follow-up</label>
+          <input type="email" id="problemReportContact" name="contact" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <button type="submit" class="btn-auth-primary">Send Report</button>
+        <p class="problem-report-status" id="problemReportStatus" role="status" aria-live="polite"></p>
       </form>
     </div>
   </div>

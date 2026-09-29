@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Report Inbox | Lèi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="reports-page">
+  <main class="reports-shell">
+    <header class="reports-header">
+      <a href="index.html" class="reports-brand">Lèi <span>/ Team inbox</span></a>
+      <button type="button" id="reportsSignOutBtn" class="reports-secondary-btn hidden">Sign out</button>
+    </header>
+
+    <section id="reportsLoginView" class="reports-login">
+      <p class="reports-eyebrow">Private team access</p>
+      <h1>Report inbox</h1>
+      <p>Sign in with the report inbox token configured for this deployment.</p>
+      <form id="reportsLoginForm">
+        <label for="reportsTokenInput">Team access token</label>
+        <input id="reportsTokenInput" name="token" type="password" autocomplete="current-password" required>
+        <button type="submit" class="reports-primary-btn">Open inbox</button>
+        <p id="reportsLoginStatus" class="reports-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="reportsInboxView" class="reports-inbox hidden" aria-labelledby="reportsTitle">
+      <div class="reports-title-row">
+        <div>
+          <p class="reports-eyebrow">Private team access</p>
+          <h1 id="reportsTitle">Report inbox</h1>
+        </div>
+        <button type="button" id="refreshReportsBtn" class="reports-secondary-btn">Refresh</button>
+      </div>
+      <p id="reportsListStatus" class="reports-status" role="status" aria-live="polite"></p>
+      <div id="reportsList" class="reports-list" aria-live="polite"></div>
+      <nav class="reports-pagination" aria-label="Report inbox pages">
+        <button type="button" id="reportsPreviousBtn" class="reports-secondary-btn" disabled>Previous</button>
+        <span id="reportsPageLabel">Page 1</span>
+        <button type="button" id="reportsNextBtn" class="reports-secondary-btn" disabled>Next</button>
+      </nav>
+    </section>
+  </main>
+  <script src="reports.js"></script>
+</body>
+</html>
