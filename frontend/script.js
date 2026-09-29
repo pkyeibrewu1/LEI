@@ -239,6 +239,12 @@ document.addEventListener('DOMContentLoaded', () => {
     goToSignInBtn?.click();
   });
 
+  const requestedView = new URLSearchParams(window.location.search).get('view');
+  if (requestedView === 'sign-in' || requestedView === 'sign-up') {
+    switchView(heroView, readyView);
+    (requestedView === 'sign-in' ? goToSignInBtn : goToSignUpBtn)?.click();
+  }
+
   statusOptionsGrid.forEach(card => {
     card.addEventListener('click', () => {
       statusOptionsGrid.forEach(c => c.classList.remove('selected'));
