@@ -26,6 +26,21 @@ searchInput.addEventListener('input', () => {
     : 'Browse answers by topic below.';
 });
 
+document.querySelector('.help-topic-grid').addEventListener('click', (event) => {
+  const link = event.target.closest('a[href^="#faq-"]');
+  if (!link) return;
+
+  const question = document.querySelector(link.hash);
+  if (!question) return;
+
+  if (searchInput.value) {
+    searchInput.value = '';
+    searchInput.dispatchEvent(new Event('input'));
+  }
+
+  question.open = true;
+});
+
 supportForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const formData = new FormData(supportForm);

@@ -17,6 +17,7 @@
       <span class="nav-dot" aria-hidden="true"></span>
       <span class="nav-tag-text">L&egrave;i</span>
     </a>
+    <span class="help-header-title">Help Center</span>
     <nav class="features-nav-links" aria-label="Main navigation">
       <a class="features-home-link" href="index.html">Home</a>
       <a class="features-home-link" href="community.html">Community</a>
@@ -25,39 +26,45 @@
   </header>
 
   <main class="help-main">
+    <aside class="help-sidebar" aria-label="Help center categories">
+      <p class="help-sidebar-heading">Browse help</p>
+      <nav class="help-sidebar-nav" aria-label="Help topics">
+        <a href="#getting-started"><span aria-hidden="true">&#10022;</span>Getting started</a>
+        <a href="#account"><span aria-hidden="true">&#9673;</span>Your account</a>
+        <a href="#communities"><span aria-hidden="true">&#9825;</span>Communities</a>
+        <a href="#events"><span aria-hidden="true">&#8982;</span>Events</a>
+        <a href="#safety"><span aria-hidden="true">&#10003;</span>Safety &amp; privacy</a>
+        <a href="#technical-support"><span aria-hidden="true">&#8635;</span>Technical support</a>
+      </nav>
+      <a class="help-sidebar-contact" href="#contact-support">Contact support <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+    <div class="help-content">
     <section class="help-hero" aria-labelledby="helpTitle">
       <div class="help-hero-copy">
-        <span class="help-eyebrow">A little help goes a long way</span>
-        <h1 id="helpTitle">How can we<br><em>help you?</em></h1>
-        <p>Find your footing, get to know your community, and feel more at home on L&egrave;i.</p>
+        <h1 id="helpTitle">How can we help you?</h1>
+        <p>Search for answers or browse help by topic.</p>
       </div>
       <div class="help-search-panel">
-        <label for="helpSearch">Search the Help Center</label>
+        <label for="helpSearch" class="visually-hidden">Search help articles</label>
         <div class="help-search-control">
           <span aria-hidden="true">&#9906;</span>
-          <input id="helpSearch" type="search" placeholder="Try “verify my account”" autocomplete="off">
+          <input id="helpSearch" type="search" placeholder="Search help articles..." autocomplete="off">
         </div>
         <p id="helpSearchStatus" class="help-search-status" role="status" aria-live="polite">Browse answers by topic below.</p>
       </div>
-      <a class="help-safety-callout" href="#safety">
-        <span class="help-safety-mark" aria-hidden="true">!</span>
-        <span><strong>Need a hand with a safety concern?</strong><small>Find reporting options and support</small></span>
-        <span class="help-callout-arrow" aria-hidden="true">&rarr;</span>
-      </a>
     </section>
 
     <section class="help-topics" aria-labelledby="topicsTitle">
       <div class="help-section-heading">
-        <div><span class="help-eyebrow">Find your way</span><h2 id="topicsTitle">Browse by topic</h2></div>
-        <p>Choose a starting point. You can search all answers above, too.</p>
+        <h2 id="topicsTitle">Featured topics</h2>
       </div>
       <nav class="help-topic-grid" aria-label="Help topics">
-        <a class="help-topic-card topic-start" href="#getting-started"><span class="help-topic-number">01</span><span class="help-topic-symbol" aria-hidden="true">&#10022;</span><strong>Getting started</strong><small>Join, verify, and explore</small><span class="help-topic-arrow" aria-hidden="true">&rarr;</span></a>
-        <a class="help-topic-card topic-account" href="#account"><span class="help-topic-number">02</span><span class="help-topic-symbol" aria-hidden="true">&#9673;</span><strong>Your account</strong><small>Profile and sign-in help</small><span class="help-topic-arrow" aria-hidden="true">&rarr;</span></a>
-        <a class="help-topic-card topic-community" href="#communities"><span class="help-topic-number">03</span><span class="help-topic-symbol" aria-hidden="true">&#9825;</span><strong>Communities</strong><small>Groups and conversations</small><span class="help-topic-arrow" aria-hidden="true">&rarr;</span></a>
-        <a class="help-topic-card topic-events" href="#events"><span class="help-topic-number">04</span><span class="help-topic-symbol" aria-hidden="true">&#8982;</span><strong>Events</strong><small>Discover and make plans</small><span class="help-topic-arrow" aria-hidden="true">&rarr;</span></a>
-        <a class="help-topic-card topic-safety" href="#safety"><span class="help-topic-number">05</span><span class="help-topic-symbol" aria-hidden="true">&#10003;</span><strong>Safety &amp; privacy</strong><small>Reporting and your choices</small><span class="help-topic-arrow" aria-hidden="true">&rarr;</span></a>
-        <a class="help-topic-card topic-technical" href="#technical-support"><span class="help-topic-number">06</span><span class="help-topic-symbol" aria-hidden="true">&#8635;</span><strong>Technical support</strong><small>Troubleshooting and contact</small><span class="help-topic-arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="help-topic-card" href="#faq-create-account">How do I create and verify an account?</a>
+        <a class="help-topic-card" href="#faq-password">How do I change my email or reset my password?</a>
+        <a class="help-topic-card" href="#faq-profile-visibility">Who can see my profile and posts?</a>
+        <a class="help-topic-card" href="#faq-report-member">How do I report a member or inappropriate behavior?</a>
+        <a class="help-topic-card" href="#faq-find-events">How do I find events?</a>
+        <a class="help-topic-card" href="#faq-code">I am not receiving my verification code. What should I do?</a>
       </nav>
     </section>
 
@@ -113,8 +120,8 @@
           <details class="help-question" id="faq-block"><summary>How do I block someone or control who can message me?</summary><p>Use the member and message controls available in your signed-in space. If you cannot find a control, contact support and describe what you need. The exact controls may vary as L&egrave;i develops.</p></details>
         </div>
         <div class="help-policy-note">
-          <strong>Policy pages are being prepared.</strong>
-          <p>Community Guidelines, Privacy Policy, Terms of Service, and a full Safety Guide are not published yet. For urgent questions about how a feature works, contact the team before sharing sensitive information.</p>
+          <strong>Policy drafts are available for review.</strong>
+          <p><a href="community-guidelines.html">Community Guidelines</a>, <a href="privacy-policy.html">Privacy Policy</a>, and <a href="terms-of-service.html">Terms of Service</a> are drafts and are not final policies. A full Safety Guide is still being prepared.</p>
         </div>
       </section>
 
@@ -157,11 +164,12 @@
         <p class="help-form-privacy">Do not include your password, verification code, or information you do not want to share by email.</p>
       </form>
     </section>
+    </div>
   </main>
 
   <footer class="features-footer help-footer">
     <span>&copy; 2026 L&egrave;i</span>
-    <nav aria-label="Footer navigation"><a href="features.html">Features</a><a href="community.html">Community</a><a href="index.html">Home</a></nav>
+    <nav aria-label="Footer navigation"><a href="features.html">Features</a><a href="community.html">Community</a><a href="community-guidelines.html">Community Guidelines</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-service.html">Terms of Service</a><a href="index.html">Home</a></nav>
   </footer>
   <script src="help.js" defer></script>
 </body>
