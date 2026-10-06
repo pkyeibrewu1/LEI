@@ -1,7 +1,7 @@
 .policy-page {
   --policy-ink: #392a32;
   --policy-muted: #776b6e;
-  --policy-accent: #58756b;
+  --policy-accent: #80576f;
   --policy-border: #e7dcd8;
   min-height: 100vh;
   background: #fbf7f1;
@@ -14,9 +14,9 @@
 }
 
 .policy-page .features-brand .nav-tag-text { color: var(--policy-ink); }
-.policy-page .nav-dot { background: var(--policy-accent); box-shadow: 0 0 10px rgba(88, 117, 107, 0.25); }
-.policy-page .features-nav-cta { background: var(--policy-accent); box-shadow: 0 5px 15px rgba(57, 83, 71, 0.15); }
-.policy-page .features-nav-cta:hover { background: #3f5d52; }
+.policy-page .nav-dot { background: var(--policy-accent); box-shadow: 0 0 10px rgba(128, 87, 111, 0.25); }
+.policy-page .features-nav-cta { background: var(--policy-accent); box-shadow: 0 5px 15px rgba(67, 40, 58, 0.15); }
+.policy-page .features-nav-cta:hover { background: #43283a; }
 
 .policy-main {
   position: relative;

@@ -1,8 +1,8 @@
 .help-page {
   --help-ink: #29242a;
   --help-muted: #6d6870;
-  --help-accent: #755274;
-  --help-accent-dark: #563c57;
+  --help-accent: #80576f;
+  --help-accent-dark: #43283a;
   --help-border: #e9e6ea;
   --help-paper: #fff;
   background: #fff;
@@ -34,7 +34,7 @@
   width: 10px;
   height: 10px;
   background: var(--help-accent);
-  box-shadow: 0 0 0 4px #f3eef4;
+  box-shadow: 0 0 0 4px #f3e4df;
 }
 .help-header-title {
   position: absolute;
@@ -114,7 +114,7 @@
 }
 .help-sidebar-nav a:hover,
 .help-sidebar-nav a:focus-visible {
-  background: #f6f3f7;
+  background: #f3e4df;
   color: var(--help-accent-dark);
 }
 .help-sidebar-contact {
@@ -163,9 +163,9 @@
   gap: 14px;
   min-height: 64px;
   padding: 0 22px;
-  border: 1px solid #eeebef;
+  border: 1px solid #e8d9d1;
   border-radius: 12px;
-  background: #f8f7f9;
+  background: #fbf7f1;
   transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
 }
 .help-search-control > span {
@@ -184,9 +184,9 @@
 }
 .help-search-control input::placeholder { color: #89838c; }
 .help-search-control:focus-within {
-  border-color: #b9a7bc;
+  border-color: #ad766d;
   background: #fff;
-  box-shadow: 0 0 0 4px rgba(117, 82, 116, 0.1);
+  box-shadow: 0 0 0 4px rgba(128, 87, 111, 0.1);
 }
 .help-search-status {
   min-height: 18px;
@@ -338,7 +338,7 @@
   grid-column: 2;
   margin-top: 2px;
   padding: 15px 17px;
-  border-left: 3px solid #c49a5c;
+  border-left: 3px solid #b17c37;
   border-radius: 0 5px 5px 0;
   background: #faf7f1;
 }
@@ -353,9 +353,9 @@
   gap: 38px;
   margin: 0 calc(clamp(30px, 6vw, 84px) * -0.45);
   padding: 42px clamp(30px, 5vw, 64px);
-  border: 1px solid #eae6ec;
+  border: 1px solid #e8d9d1;
   border-radius: 10px;
-  background: #f8f6f9;
+  background: #f3e4df;
   scroll-margin-top: 92px;
 }
 .help-contact-copy { align-self: start; padding-top: 8px; }
@@ -427,7 +427,7 @@
 }
 .help-field textarea { min-height: 108px; resize: vertical; line-height: 1.6; }
 .help-field input:focus, .help-field select:focus, .help-field textarea:focus {
-  outline: 2px solid rgba(117, 82, 116, 0.2);
+  outline: 2px solid rgba(128, 87, 111, 0.2);
   outline-offset: 1px;
   border-color: var(--help-accent);
 }
@@ -437,7 +437,7 @@
   padding: 6px 9px;
   border: 1px solid #ded9e1;
   border-radius: 4px;
-  background: #f8f6f9;
+  background: #f3e4df;
   color: var(--help-ink);
   font: inherit;
   cursor: pointer;
@@ -460,7 +460,7 @@
   transition: background 0.16s ease;
 }
 .help-submit:hover { background: var(--help-accent-dark); }
-.help-form-status { min-height: 18px; margin-top: 11px; color: #476b57; font-size: 0.64rem; line-height: 1.6; }
+.help-form-status { min-height: 18px; margin-top: 11px; color: var(--help-accent); font-size: 0.64rem; line-height: 1.6; }
 .help-form-privacy { margin-top: 5px; color: var(--help-muted); font-size: 0.58rem; line-height: 1.6; }
 
 .help-page .features-footer {
@@ -506,7 +506,7 @@
   }
   .help-sidebar-heading { margin: 0 0 8px; }
   .help-sidebar-nav { display: flex; gap: 7px; overflow-x: auto; padding: 1px 0 5px; }
-  .help-sidebar-nav a { flex: 0 0 auto; min-height: 34px; gap: 7px; padding: 7px 9px; background: #f8f6f9; font-size: 0.65rem; white-space: nowrap; }
+  .help-sidebar-nav a { flex: 0 0 auto; min-height: 34px; gap: 7px; padding: 7px 9px; background: #f3e4df; font-size: 0.65rem; white-space: nowrap; }
   .help-sidebar-nav a > span { width: auto; font-size: 0.85rem; }
   .help-sidebar-contact { display: none; }
   .help-content { max-width: none; padding: 0 22px; }
