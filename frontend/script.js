@@ -20,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToReadyFromLogin = document.getElementById('backToReadyFromLogin');
   const backToReadyFromSignUp = document.getElementById('backToReadyFromSignUp');
   const continueBtn = document.getElementById('continueBtn');
-  const goToSignInBtn = document.getElementById('goToSignInBtn');
   const goToSignUpBtn = document.getElementById('goToSignUpBtn');
+  const readyMoodNote = document.getElementById('readyMoodNote');
 
   // Traits & Confetti
-  const traitCards = document.querySelectorAll('.trait-card');
+  const traitCards = document.querySelectorAll('#questionView .trait-card');
   const particleField = document.getElementById('particles');
   const celebrationCanvas = document.getElementById('celebrationCanvas');
   const activeAlgoTraits = document.getElementById('activeAlgoTraits');
@@ -178,6 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // State
   const selectedTraits = new Set();
+  let selectedMood = [];
+  let signupSourceView = heroView;
   let verifiedAgeTiers = new Set();
   let streamRef = null;
   let isPhoneVerified = false;
@@ -199,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
           enterPlatformDirectly(activeSession.primaryAffinity);
         });
       } else {
+        signupSourceView = heroView;
         switchView(heroView, questionView);
       }
     });
@@ -232,23 +235,28 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
-  if (switchToSignUp) switchToSignUp.addEventListener('click', () => switchView(signInView, signUpView));
+  if (switchToSignUp) switchToSignUp.addEventListener('click', () => {
+    signupSourceView = signInView;
+    switchView(signInView, questionView);
+  });
   if (switchToSignIn) switchToSignIn.addEventListener('click', () => switchView(signUpView, signInView));
-  if (backToHero) backToHero.addEventListener('click', () => switchView(questionView, heroView));
+  if (backToHero) backToHero.addEventListener('click', () => switchView(questionView, signupSourceView));
   if (backToQuestion) backToQuestion.addEventListener('click', () => switchView(readyView, questionView));
-  if (backToReadyFromLogin) backToReadyFromLogin.addEventListener('click', () => switchView(signInView, readyView));
+  if (backToReadyFromLogin) backToReadyFromLogin.addEventListener('click', () => switchView(signInView, heroView));
   if (backToReadyFromSignUp) backToReadyFromSignUp.addEventListener('click', () => { stopWebcam(); switchView(signUpView, readyView); });
-  if (goToSignInBtn) goToSignInBtn.addEventListener('click', () => switchView(readyView, signInView));
   if (goToSignUpBtn) goToSignUpBtn.addEventListener('click', () => switchView(readyView, signUpView));
   if (navSignInBtn) navSignInBtn.addEventListener('click', () => {
-    switchView(heroView, readyView);
-    goToSignInBtn?.click();
+    switchView(heroView, signInView);
   });
 
   const requestedView = new URLSearchParams(window.location.search).get('view');
   if (requestedView === 'sign-in' || requestedView === 'sign-up') {
-    switchView(heroView, readyView);
-    (requestedView === 'sign-in' ? goToSignInBtn : goToSignUpBtn)?.click();
+    if (requestedView === 'sign-in') {
+      switchView(heroView, signInView);
+    } else {
+      signupSourceView = heroView;
+      switchView(heroView, questionView);
+    }
   }
 
   statusOptionsGrid.forEach(card => {
@@ -262,25 +270,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (saveStatusBtn) {
     saveStatusBtn.addEventListener('click', () => {
+      const user = JSON.parse(localStorage.getItem('lei_active_session') || '{}');
+      if (!user.email || !user.username) {
+        return alert('Sign in again before updating your mood.');
+      }
+
       if (userStatusPillMini) {
         userStatusPillMini.innerText = `Status: ${currentSelectedStatus}`;
       }
-      const user = JSON.parse(localStorage.getItem('lei_active_session') || '{}');
       user.userStatus = currentSelectedStatus;
       localStorage.setItem('lei_active_session', JSON.stringify(user));
+      localStorage.setItem(`lei_user_${user.email}`, JSON.stringify(user));
+      localStorage.setItem(`lei_user_${user.username.toLowerCase()}`, JSON.stringify(user));
       alert(`Status updated successfully to: "${currentSelectedStatus}"`);
     });
   }
 
   traitCards.forEach(card => {
+    card.setAttribute('aria-pressed', 'false');
     card.addEventListener('click', () => {
       const trait = card.getAttribute('data-trait');
       if (selectedTraits.has(trait)) {
         selectedTraits.delete(trait);
         card.classList.remove('selected');
+        card.setAttribute('aria-pressed', 'false');
       } else {
+        selectedTraits.clear();
+        traitCards.forEach(option => {
+          option.classList.remove('selected');
+          option.setAttribute('aria-pressed', 'false');
+        });
         selectedTraits.add(trait);
         card.classList.add('selected');
+        card.setAttribute('aria-pressed', 'true');
       }
       if (continueBtn) continueBtn.disabled = selectedTraits.size === 0;
     });
@@ -289,9 +311,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (continueBtn) {
     continueBtn.addEventListener('click', () => {
       if (selectedTraits.size === 0) return;
-      const traitsArr = Array.from(selectedTraits);
+      selectedMood = Array.from(selectedTraits);
+      if (readyMoodNote) {
+        const moodLabels = selectedMood.map(trait => {
+          const card = Array.from(traitCards).find(item => item.dataset.trait === trait);
+          return card ? card.querySelector('.trait-name').textContent.trim() : trait;
+        });
+        readyMoodNote.textContent = `Your mood, your way: ${moodLabels.join(' · ')}`;
+      }
       if (activeAlgoTraits) {
-        activeAlgoTraits.innerText = traitsArr.join(', ');
+        activeAlgoTraits.innerText = selectedMood.join(', ');
       }
       switchView(questionView, readyView);
       launchCelebrationConfetti();
@@ -535,7 +564,7 @@ document.addEventListener('DOMContentLoaded', () => {
         password, 
         privacy, 
         primaryAffinity: null,
-        userStatus: 'thriving ✨'
+        userStatus: selectedMood.join(', ') || 'thriving'
       };
 
       localStorage.setItem(`lei_user_${email}`, JSON.stringify(userData));
@@ -638,6 +667,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeSession.userStatus && userStatusPillMini) {
       userStatusPillMini.innerText = `Status: ${activeSession.userStatus}`;
     }
+    const savedMood = (activeSession.userStatus || 'thriving').split(',')[0].trim().toLowerCase();
+    const savedMoodCard = Array.from(statusOptionsGrid).find(card => card.dataset.trait === savedMood);
+    statusOptionsGrid.forEach(card => card.classList.toggle('selected', card === savedMoodCard));
+    currentSelectedStatus = savedMoodCard ? savedMoodCard.dataset.trait : 'thriving';
   }
 
   function updateSpaceDropdownUI(primaryAffinity) {
